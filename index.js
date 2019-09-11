@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const exphbs = require('express-handlebars');
 const logger = require('./middleware/logger.js');
 
 const app = express();
@@ -7,6 +8,10 @@ const app = express();
 
 // INITIALIZE MIDDLEWARE
 //app.use(logger);
+
+// HANDLEBARS MIDDLEWARE
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // BODY PARSER MIDDLEWARE
 app.use(express.json());
