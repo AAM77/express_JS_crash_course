@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const logger = require('./middleware/logger.js');
+const members = require('./Members')
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.set('view engine', 'handlebars');
 // BODY PARSER MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// HOMEPAGE ROUTE
+app.get('/', (req, res) => res.render('index', {
+  title: 'Member App',
+  members: members
+}))
 
 // SET A STATIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
