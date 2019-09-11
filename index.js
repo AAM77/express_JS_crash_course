@@ -8,10 +8,14 @@ const app = express();
 // INITIALIZE MIDDLEWARE
 //app.use(logger);
 
+// BODY PARSER MIDDLEWARE
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // SET A STATIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
 
+// MEMBERS API ROUTES
 app.use('/api/members', require('./routes/api/members'));
 
 const PORT = process.env.PORT || 5000;
