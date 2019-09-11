@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
+const members = require('./Members.js')
 
 const app = express();
 
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// })
+// GETS ALL MEMBERS
+app.get('/api/members', (req, res) => res.json(members));
 
 // SET A STATIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
