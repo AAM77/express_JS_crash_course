@@ -7,10 +7,15 @@ const app = express();
 
 
 // INITIALIZE MIDDLEWARE
-app.use(logger);
+//app.use(logger);
 
 // GETS ALL MEMBERS
 app.get('/api/members', (req, res) => res.json(members));
+
+// GET SINGLE MEMBER
+app.get('/api/members/:id', (req, res) => {
+  res.json(members.filter( member => member.id === parseInt(req.params.id)));
+});
 
 // SET A STATIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
